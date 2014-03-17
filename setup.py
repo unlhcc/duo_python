@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name='duo_web',
+    name='duo_web_python',
     version='1.1',
     description='Duo Web SDK for two-factor authentication',
     author='Duo Security, Inc.',
