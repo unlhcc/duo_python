@@ -3,3 +3,4 @@ include apache-license-2.0.txt
 recursive-include demos *
 include tests/*.py
 include README.md
+include js/*.js
