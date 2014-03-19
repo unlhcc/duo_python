@@ -4,3 +4,4 @@ recursive-include demos *
 include tests/*.py
 include README.md
 include js/*.js
+include conf/*

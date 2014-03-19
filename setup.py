@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name='duo_web_python',
+    name='duo-web-python',
     version='1.1',
     description='Duo Web SDK for two-factor authentication',
     author='Duo Security, Inc.',
@@ -12,12 +12,14 @@ setup(
         'duo_web': ['js/*.js'],
     },
     data_files=[
-        ('js', [
+        ('share/javascript/duo', [
                 'js/Duo-Web-v1.bundled.js',
                 'js/Duo-Web-v1.bundled.min.js',
                 'js/Duo-Web-v1.js',
                 'js/Duo-Web-v1.min.js',
         ]),
+       ('/etc/httpd/conf.d',['conf/duo-js.conf']),
+       ('/etc/duo',['conf/duo_web.conf']),
     ],
     license='BSD',
     classifiers=[
