@@ -1,7 +1,7 @@
 %define name duo-web-python
 %define version 1.1
 %define unmangled_version 1.1
-%define release 2
+%define release 3
 
 Summary: Duo Web SDK for two-factor authentication
 Name: %{name}
