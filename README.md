@@ -1,25 +1,45 @@
 # Overview
 
-**duo_python** - Duo two-factor authentication for Python web applications
+[![Build Status](https://travis-ci.org/duosecurity/duo_python.svg?branch=master)](https://travis-ci.org/duosecurity/duo_python)
+
+**duo_python** - Duo two-factor authentication for Python web applications: https://duo.com/docs/duoweb
 
 This package allows a web developer to quickly add Duo's interactive, self-service, two-factor authentication to any web login form - without setting up secondary user accounts, directory synchronization, servers, or hardware.
 
-What's here:
+Files located in the `js` directory should be hosted by your webserver for inclusion in web pages.
 
-* `js` - Duo Javascript library, to be hosted by your webserver.
-* `duo_web.py` - Duo Python SDK to be integrated with your web application
-* `test.py` -  Unit tests for our SDK
+# Installation
 
-# Usage
+Using `pip`:
 
-Developer documentation: <http://www.duosecurity.com/docs/duoweb>
+`pip install duo_web`.
+
+# Examples
+Included are examples for integrating `duo_web` into Google App Engine, Django, and the standard library `HTTPSimpleServer`. See each demo directory for instructions on setup and running.
+
+Development:
+
+```
+$ git clone https://github.com/duosecurity/duo_python.git
+$ cd duo_python
+$ pip install --requirement requirements-dev.txt
+```
+
+# Testing
+
+```
+$ nose2
+```
+
+# Linting
+
+```
+$ flake8 --ignore=E501 duo_web/ tests/
+```
 
 # Support
 
-Report any bugs, feature requests, etc. to us directly:
-support@duosecurity.com
-
-Have fun!
+Report any bugs, feature requests, etc. to us directly: support@duosecurity.com
 
 <http://www.duosecurity.com>
 

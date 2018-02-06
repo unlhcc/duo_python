@@ -13,29 +13,24 @@ LOGIN_URL = '/accounts/login'
 # how the Duo URLs are included to move this.
 DUO_LOGIN_URL = '/accounts/duo_login'
 
-# Static file serving.  Duo requires that STATIC_PREFIX contains the URL
-# prefix for where its Javascript file will be served from, the rest is 
-# specific to your installation.
-# Absolute URL prefix for where static files are served from.
-# Do not include the trailing slash.
-STATIC_PREFIX = '/static'
-# Local directory where static files are served from.
-# Include the leading slash, do not include the trailing slash.
-STATIC_DIRECTORY = '/'.join([BASE_DIR, 'static'])
-
 # Duo configuration.
 DUO_IKEY = ''
 DUO_SKEY = ''
 DUO_AKEY = ''
 DUO_HOST = ''
 
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
+STATIC_URL = '/static/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.admin',    
+    'django.contrib.admin',
     'duo_app')
 
 DATABASES = {
@@ -45,11 +40,26 @@ DATABASES = {
     }
 }
 
-TEMPLATE_DIRS = (
-    '/'.join([BASE_DIR, 'templates']),)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': True,
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.static',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
+INTERNAL_IPS = ['*']
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -97,14 +107,7 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '6#jhv1%cj)!4ajbw8c&-=v!d3x*elcp$let02zh&n!rs4d**%j'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

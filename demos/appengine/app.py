@@ -87,18 +87,31 @@ class SecondaryAuthPage(BasePage):
         (username, _) = self.user_email_parts(user)
         sig_request = duo_web.sign_request(ikey, skey, akey, username)
         self.response.out.write(
-            "<script src='/static/Duo-Web-v1.bundled.min.js'></script>"
-            "<script>"
-            "Duo.init({'host':'%(host)s', 'post_action':'%(post_action)s', "
-            "'sig_request':'%(sig_request)s'});"
-            "</script>"
-            "<iframe height='500' width='620' frameborder='0' id='duo_iframe' />"
-            % {'host':host, 'post_action':self.request.uri,
-               'sig_request':sig_request})
+            "<html>"
+            "  <head>"
+            "    <title>Duo Authentication</title>"
+            "    <meta name='viewport' content='width=device-width, initial-scale=1'>"
+            "    <meta http-equiv='X-UA-Compatible' content='IE=edge'>"
+            "    <link rel='stylesheet' type='text/css' href='/static/Duo-Frame.css'>"
+            "  </head>"
+            "  <body>"
+            "    <h1>Duo Authentication</h1>"
+            "      <script src='/static/Duo-Web-v2.js'></script>"
+            "      <iframe id='duo_iframe'"
+            "              title='Two-Factor Authentication'"
+            "              frameborder='0'"
+            "              data-host='%(host)s'"
+            "              data-sig-request='%(sig_request)s'"
+            "              data-post-action='%(post_action)s'"
+            "              >"
+            "      </iframe>"
+            "  </body>"
+            "</html>"
+            % {'host': host, 'sig_request': sig_request, 'post_action': self.request.uri})
         
     def post(self):
         """
-        If we have a sig_response argument containig a Duo auth cookie
+        If we have a sig_response argument containing a Duo auth cookie
         indicating that the current user has logged in to both Google and
         Duo with matching usernames, write a login cookie and redirect to /.
         Otherwise, indicate failure.
