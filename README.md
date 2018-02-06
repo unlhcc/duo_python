@@ -49,5 +49,5 @@ Build just the szip format, then create the SRPM and build the final RPM.
 ```
 python setup.py sdist
 mock --buildsrpm --spec duo-web-python.spec --sources dist --resultdir=dist
-mock dist/duo-web-python-1.1-1.src.rpm --resultdir=dist
+mock dist/duo-web-python-1.2.0-0.el6.src.rpm --resultdir=dist
 ```

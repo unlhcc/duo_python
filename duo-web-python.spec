@@ -1,7 +1,7 @@
 %define name duo-web-python
-%define version 1.1
-%define unmangled_version 1.1
-%define release 3
+%define version 1.2.0
+%define unmangled_version 1.2.0
+%define release 0
 
 Summary: Duo Web SDK for two-factor authentication
 Name: %{name}
@@ -42,5 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+* Tue Feb 6 2018 Adam Caprez <acaprez2@unl.edu> - 1.2.0-0
+- Update version to 1.2.0.
 * Wed Mar 19 2014 Adam Caprez <acaprez2@unl.edu> - 1.1-2
 - Added dist tag to release field
